@@ -6,7 +6,7 @@ createServer({
   models: {
     tarnsaction: Model,
   },
-  seeds(server) {
+  seeds (server){
     server.db.loadData({
       tarnsactions: [
         {
@@ -15,7 +15,7 @@ createServer({
           type: "deposit",
           category: "Dev",
           amount: 6000,
-          createAt: new Date("2021-08-08 14:00:00"),
+          createAt: new Date("2021-08-08 14:00:00")
         },
         {
           id: 2,
@@ -23,10 +23,10 @@ createServer({
           type: "withdraw",
           category: "Casa",
           amount: 1200,
-          createAt: new Date("2021-08-12 18:00:00"),
-        },
-      ],
-    });
+          createAt: new Date("2021-08-12 18:00:00")
+        }
+      ]
+    })
   },
 
   routes() {
