@@ -1,0 +1,14 @@
+{
+  "name": "nodejs-chapter-1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Hugovarellaa/nodejs-chapter-1.git",
+  "author": "Hugo <hugovarellaa@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
