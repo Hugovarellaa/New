@@ -24,7 +24,17 @@ app.post("/account", (req, res) => {
     statement: [],
   });
 
-  return res.status(201).send();
+  return res.status(201).json(customers);
+});
+
+app.get("/statement/:cpf", (req, res) => {
+  const { cpf } = req.params;
+
+  const customer = customers.find((cust) => cust.cpf === cpf);
+  if (!customer) {
+    return res.status(400).json({ erro: "Customer not found" });
+  }
+  return res.json(customer.statement);
 });
 
 app.listen(3333, () => console.log("Server is running in port 3333"));
