@@ -117,4 +117,10 @@ app.put("/account", verifyIfExistsAccountCPF, (req, res) => {
   return res.status(201).json(name);
 });
 
+app.get("/account", verifyIfExistsAccountCPF, (req, res) => {
+  const { customer } = req;
+
+  return res.status(201).json(customer);
+});
+
 app.listen(3333, () => console.log("Server is running in port 3333"));
