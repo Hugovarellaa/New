@@ -11,7 +11,6 @@
   <a href="#-como-executar">Rotas criadas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-licença">Licença</a>
 </p>
-#-licença
 
 <br/>
 <br/>
