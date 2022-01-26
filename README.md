@@ -19,7 +19,12 @@
   <img src="./images/img01.png">
 </div>
 
+<br/>
+<br/>
+
 ## ✨ Tecnologias
+
+---
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
@@ -28,13 +33,22 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [Insomnia](https://docs.insomnia.rest/)
 
 <br/>
-<br/>
 
 ## 💻 Projeto
 
+---
+
+<br/>
+
 O FinApi é uma aplicação que cálcula entradas e saidas de valores, onde é possível cadastrar, consultar e excluir valores, 💰.
 
+<br/>
+
 ## 🚀 Como executar
+
+---
+
+<br/>
 
 - Clone o repositório
 - Instale as dependências com `yarn`
@@ -42,7 +56,11 @@ O FinApi é uma aplicação que cálcula entradas e saidas de valores, onde é p
 
 A aplicação pode ser acessada em [`localhost:3333`](http://localhost:3333).
 
+<br/>
+
 ## Requisitos
+
+---
 
     [x] Deve ser possível criar umma conta
     [x] Deve ser possível buscar o extrato bancário do cliente
@@ -54,7 +72,11 @@ A aplicação pode ser acessada em [`localhost:3333`](http://localhost:3333).
     [x] Deve ser possível deletar uma conta
     [x] Deve ser possível retornar o balance
 
+<br/>
+
 ## Regras de negócio
+
+---
 
     [x] Não deve ser possível cadastrar uma conta com CPF já existente
     [x] Não deve ser possível fazer depósito em uma conta não existente
@@ -63,12 +85,22 @@ A aplicação pode ser acessada em [`localhost:3333`](http://localhost:3333).
     [x] Não deve ser possível fazer saque quando o saldo for insuficiente
     [x] Não deve ser possível excluir uma conta não existente
 
+<br/>
+<br/>
+
 ## 💻 Rotas
+
+---
 
 <div align="center">
   <img src="./images/FinApi.png" width="100%">
 </div>
 
+<br/>
+<br/>
+
 ## 📄 Licença
+
+---
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
