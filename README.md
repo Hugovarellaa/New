@@ -24,8 +24,6 @@
 
 ## ✨ Tecnologias
 
----
-
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - [Javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
@@ -36,8 +34,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
----
-
 <br/>
 
 O FinApi é uma aplicação que cálcula entradas e saidas de valores, onde é possível cadastrar, consultar e excluir valores, 💰.
@@ -45,8 +41,6 @@ O FinApi é uma aplicação que cálcula entradas e saidas de valores, onde é p
 <br/>
 
 ## 🚀 Como executar
-
----
 
 <br/>
 
@@ -59,8 +53,6 @@ A aplicação pode ser acessada em [`localhost:3333`](http://localhost:3333).
 <br/>
 
 ## Requisitos
-
----
 
     [x] Deve ser possível criar umma conta
     [x] Deve ser possível buscar o extrato bancário do cliente
@@ -76,8 +68,6 @@ A aplicação pode ser acessada em [`localhost:3333`](http://localhost:3333).
 
 ## Regras de negócio
 
----
-
     [x] Não deve ser possível cadastrar uma conta com CPF já existente
     [x] Não deve ser possível fazer depósito em uma conta não existente
     [x] Não deve ser possível buscar extrato em uma conta não existente
@@ -90,8 +80,6 @@ A aplicação pode ser acessada em [`localhost:3333`](http://localhost:3333).
 
 ## 💻 Rotas
 
----
-
 <div align="center">
   <img src="./images/FinApi.png" width="100%">
 </div>
@@ -100,7 +88,5 @@ A aplicação pode ser acessada em [`localhost:3333`](http://localhost:3333).
 <br/>
 
 ## 📄 Licença
-
----
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
