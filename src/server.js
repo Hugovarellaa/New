@@ -20,6 +20,18 @@ function verifyIfExistsAccountCPF(req, res, next) {
   return next();
 }
 
+function getBalance(statement) {
+  const balance = statement.reduce((acc, operation) => {
+    if (operation.type === "credit") {
+      return acc + operation.amount;
+    } else {
+      return acc - operation.amount;
+    }
+  }, 0);
+
+  return balance;
+}
+
 app.post("/account", (req, res) => {
   const { cpf, name } = req.body;
 
@@ -45,6 +57,7 @@ app.get("/statement", verifyIfExistsAccountCPF, (req, res) => {
   const { customer } = req;
   return res.json(customer.statement);
 });
+
 app.post("/deposit", verifyIfExistsAccountCPF, (req, res) => {
   const { description, amount } = req.body;
   const { customer } = req;
@@ -53,11 +66,32 @@ app.post("/deposit", verifyIfExistsAccountCPF, (req, res) => {
     description,
     amount,
     created_at: new Date(),
-    type: "deposit",
+    type: "credit",
   };
 
   customer.statement.push(StatementOperation);
   return res.status(201).json(StatementOperation);
+});
+
+app.post("/withdraw", verifyIfExistsAccountCPF, (req, res) => {
+  const { amount } = req.body;
+  const { customer } = req;
+
+  const balance = getBalance(customer.statement);
+  if (balance < amount) {
+    return res
+      .status(400)
+      .json({ error: "Insufficient fundds!", balance, amount });
+  }
+
+  const statementOperation = {
+    amount,
+    created_at: new Date(),
+    type: "debit",
+  };
+  customer.statement.push(statementOperation);
+
+  return res.status(201).json(statementOperation);
 });
 
 app.listen(3333, () => console.log("Server is running in port 3333"));
