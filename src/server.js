@@ -19,7 +19,6 @@ function verifyIfExistsAccountCPF(req, res, next) {
   req.customer = customer;
   return next();
 }
-
 function getBalance(statement) {
   const balance = statement.reduce((acc, operation) => {
     if (operation.type === "credit") {
@@ -31,7 +30,6 @@ function getBalance(statement) {
 
   return balance;
 }
-
 app.post("/account", (req, res) => {
   const { cpf, name } = req.body;
 
@@ -52,12 +50,10 @@ app.post("/account", (req, res) => {
 
   return res.status(201).json(customers);
 });
-
 app.get("/statement", verifyIfExistsAccountCPF, (req, res) => {
   const { customer } = req;
   return res.json(customer.statement);
 });
-
 app.post("/deposit", verifyIfExistsAccountCPF, (req, res) => {
   const { description, amount } = req.body;
   const { customer } = req;
@@ -72,7 +68,6 @@ app.post("/deposit", verifyIfExistsAccountCPF, (req, res) => {
   customer.statement.push(StatementOperation);
   return res.status(201).json(StatementOperation);
 });
-
 app.post("/withdraw", verifyIfExistsAccountCPF, (req, res) => {
   const { amount } = req.body;
   const { customer } = req;
@@ -93,7 +88,6 @@ app.post("/withdraw", verifyIfExistsAccountCPF, (req, res) => {
 
   return res.status(201).json(statementOperation);
 });
-
 app.get("/statement/date", verifyIfExistsAccountCPF, (req, res) => {
   const { customer } = req;
   const { date } = req.query;
@@ -107,7 +101,6 @@ app.get("/statement/date", verifyIfExistsAccountCPF, (req, res) => {
 
   return res.json(statements);
 });
-
 app.put("/account", verifyIfExistsAccountCPF, (req, res) => {
   const { name } = req.body;
   const { customer } = req;
@@ -116,13 +109,11 @@ app.put("/account", verifyIfExistsAccountCPF, (req, res) => {
 
   return res.status(201).json(name);
 });
-
 app.get("/account", verifyIfExistsAccountCPF, (req, res) => {
   const { customer } = req;
 
   return res.status(201).json(customer);
 });
-
 app.delete("/account", verifyIfExistsAccountCPF, (req, res) => {
   const { customer } = req;
 
@@ -130,7 +121,6 @@ app.delete("/account", verifyIfExistsAccountCPF, (req, res) => {
 
   return res.status(200).json(customers);
 });
-
 app.get("/balance", verifyIfExistsAccountCPF, (req, res) => {
   const { customer } = req;
 
@@ -138,5 +128,4 @@ app.get("/balance", verifyIfExistsAccountCPF, (req, res) => {
 
   return res.json(balance);
 });
-
 app.listen(3333, () => console.log("Server is running in port 3333"));
