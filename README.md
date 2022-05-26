@@ -85,7 +85,6 @@ A aplicação pode ser acessada em [`localhost:3333`](http://localhost:3333).
 </div>
 
 <br/>
-<br/>
 
 ## 📄 Licença
 
