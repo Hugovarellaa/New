@@ -26,9 +26,11 @@
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
-- [Javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 - [Node.js](https://nodejs.org/en/docs/)
-- [Insomnia](https://docs.insomnia.rest/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Express](https://expressjs.com/pt-br/)
+- [Ts-node-dev](https://www.npmjs.com/package/ts-node-dev)
+- [Uuid](https://www.uuidgenerator.net/)
 
 <br/>
 
@@ -54,7 +56,7 @@ A aplicação pode ser acessada em [`localhost:3333`](http://localhost:3333).
 
 ## Requisitos
 
-    [x] Deve ser possível criar umma conta
+    [x] Deve ser possível criar uma conta
     [x] Deve ser possível buscar o extrato bancário do cliente
     [x] Deve ser possível realizar um depósito
     [x] Deve ser possível realizar um saque
