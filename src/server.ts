@@ -144,17 +144,34 @@ app.get(
 	},
 );
 
-app.put('/account', verifyAccountIfExistsWithCPF, (request, response) => {
-	const { customer } = request;
-	const { name } = request.body;
+app.put(
+	'/account',
+	verifyAccountIfExistsWithCPF,
+	(request, response): Response => {
+		const { customer } = request;
+		const { name } = request.body;
 
-	customer.name = name;
-	return response.status(201).send();
-});
+		customer.name = name;
+		return response.status(201).send();
+	},
+);
 
-app.get('/account', verifyAccountIfExistsWithCPF, (request, response) => {
+app.get(
+	'/account',
+	verifyAccountIfExistsWithCPF,
+	(request, response): Response => {
+		const { customer } = request;
+		return response.json(customer);
+	},
+);
+
+app.delete('/account', verifyAccountIfExistsWithCPF, (request, response) => {
 	const { customer } = request;
-	return response.json(customer);
+
+	const deleteCustomer = customers.findIndex((account) => account === customer);
+	customers.splice(deleteCustomer, 1);
+
+	return response.status(204).json({ deleteCustomer });
 });
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));
