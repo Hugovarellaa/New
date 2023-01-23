@@ -8,7 +8,7 @@ declare namespace Express {
 			statement: {
 				description: string;
 				amount: number;
-				type: string;
+				type: 'credit' | 'debit';
 				created_at: Date;
 			}[];
 		};
