@@ -165,13 +165,26 @@ app.get(
 	},
 );
 
-app.delete('/account', verifyAccountIfExistsWithCPF, (request, response) => {
+app.delete(
+	'/account',
+	verifyAccountIfExistsWithCPF,
+	(request, response): Response => {
+		const { customer } = request;
+
+		const deleteCustomer = customers.findIndex(
+			(account) => account === customer,
+		);
+		customers.splice(deleteCustomer, 1);
+
+		return response.status(204).json({ deleteCustomer });
+	},
+);
+
+app.get('/balance', verifyAccountIfExistsWithCPF, (request, response) => {
 	const { customer } = request;
 
-	const deleteCustomer = customers.findIndex((account) => account === customer);
-	customers.splice(deleteCustomer, 1);
-
-	return response.status(204).json({ deleteCustomer });
+	const balance = getBalance(customer.statement);
+	return response.json(balance);
 });
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));
