@@ -50,7 +50,7 @@ function getBalance(statement: IStatement[]) {
 	return balance;
 }
 
-app.post('/account', (request, response) => {
+app.post('/account', (request, response): Response => {
 	const { cpf, name } = request.body;
 
 	const accountAlreadyExists = customers.some(
@@ -70,7 +70,7 @@ app.post('/account', (request, response) => {
 
 	customers.push(account);
 
-	return response.status(201).json({ account });
+	return response.status(201).send();
 });
 
 app.get(
@@ -143,5 +143,18 @@ app.get(
 		return response.json(statement);
 	},
 );
+
+app.put('/account', verifyAccountIfExistsWithCPF, (request, response) => {
+	const { customer } = request;
+	const { name } = request.body;
+
+	customer.name = name;
+	return response.status(201).send();
+});
+
+app.get('/account', verifyAccountIfExistsWithCPF, (request, response) => {
+	const { customer } = request;
+	return response.json(customer);
+});
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));
