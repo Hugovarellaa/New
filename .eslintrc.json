@@ -18,6 +18,8 @@
 	"plugins": ["@typescript-eslint", "eslint-plugin-import-helpers", "prettier"],
 	"rules": {
 		"camelcase": "off",
+		"no-return-assign": "off",
+		"no-param-reassign": "off",
 		"import/no-unresolved": "error",
 		"@typescript-eslint/naming-convention": [
 			"error",
