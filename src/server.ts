@@ -1,3 +1,5 @@
+/* eslint-disable no-return-assign */
+/* eslint-disable no-param-reassign */
 import express, { NextFunction, Request, Response } from 'express';
 import { v4 as uuidV4 } from 'uuid';
 
@@ -5,16 +7,18 @@ const PORT = 3333;
 const app = express();
 app.use(express.json());
 
+interface IStatement {
+	description: string;
+	amount: number;
+	type: 'credit' | 'debit'; // deposit
+	created_at: Date;
+}
+
 interface ICustomer {
 	id: string;
 	cpf: string;
 	name: string;
-	statement: {
-		description: string;
-		amount: number;
-		type: 'credit' | 'debit'; // deposit
-		created_at: Date;
-	}[];
+	statement: IStatement[];
 }
 
 const customers: ICustomer[] = [];
@@ -34,6 +38,16 @@ function verifyAccountIfExistsWithCPF(
 
 	request.customer = customer;
 	return next();
+}
+
+function getBalance(statement: IStatement[]) {
+	const balance = statement.reduce((acc: number, operation: IStatement) => {
+		if (operation.type === 'credit') {
+			return (acc += operation.amount);
+		}
+		return (acc -= operation.amount);
+	}, 0);
+	return balance;
 }
 
 app.post('/account', (request, response) => {
@@ -68,14 +82,34 @@ app.post('/deposit', verifyAccountIfExistsWithCPF, (request, response) => {
 	const { customer } = request;
 	const { description, amount } = request.body;
 
-	const operation = {
+	customer.statement.push({
 		description,
 		amount,
 		type: 'credit', // deposit
 		created_at: new Date(),
-	};
+	});
 
-	customer.statement.push(operation);
+	return response.status(201).send();
+});
+
+app.post('/withdraw', verifyAccountIfExistsWithCPF, (request, response) => {
+	const { customer } = request;
+	const { amount, description } = request.body;
+
+	const { statement } = customer;
+
+	const balance = getBalance(statement);
+
+	if (balance < amount) {
+		return response.status(400).json({ message: 'Insufficient funds' });
+	}
+
+	customer.statement.push({
+		description,
+		amount,
+		type: 'debit', // deposit
+		created_at: new Date(),
+	});
 
 	return response.status(201).send();
 });
