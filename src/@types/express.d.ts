@@ -5,7 +5,12 @@ declare namespace Express {
 			id: stirng;
 			cpf: string;
 			name: string;
-			statement: [];
+			statement: {
+				description: string;
+				amount: number;
+				type: string;
+				created_at: Date;
+			}[];
 		};
 	}
 }
