@@ -1,0 +1,27 @@
+{
+  "name": "fin-api",
+  "version": "1.0.0",
+  "description": "<h1 align=\"center\">FinApi - Financeia</h1>",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hugovarellaa/fin-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hugovarellaa/fin-api/issues"
+  },
+  "homepage": "https://github.com/Hugovarellaa/fin-api#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.4"
+  }
+}
