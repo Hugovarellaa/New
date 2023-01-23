@@ -73,45 +73,75 @@ app.post('/account', (request, response) => {
 	return response.status(201).json({ account });
 });
 
-app.get('/statement', verifyAccountIfExistsWithCPF, (request, response) => {
-	const { customer } = request;
-	return response.json({ customer: customer.statement });
-});
+app.get(
+	'/statement',
+	verifyAccountIfExistsWithCPF,
+	(request, response): Response => {
+		const { customer } = request;
+		return response.json({ customer: customer.statement });
+	},
+);
 
-app.post('/deposit', verifyAccountIfExistsWithCPF, (request, response) => {
-	const { customer } = request;
-	const { description, amount } = request.body;
+app.post(
+	'/deposit',
+	verifyAccountIfExistsWithCPF,
+	(request, response): Response => {
+		const { customer } = request;
+		const { description, amount } = request.body;
 
-	customer.statement.push({
-		description,
-		amount,
-		type: 'credit', // deposit
-		created_at: new Date(),
-	});
+		customer.statement.push({
+			description,
+			amount,
+			type: 'credit', // deposit
+			created_at: new Date(),
+		});
 
-	return response.status(201).send();
-});
+		return response.status(201).send();
+	},
+);
 
-app.post('/withdraw', verifyAccountIfExistsWithCPF, (request, response) => {
-	const { customer } = request;
-	const { amount, description } = request.body;
+app.post(
+	'/withdraw',
+	verifyAccountIfExistsWithCPF,
+	(request, response): Response => {
+		const { customer } = request;
+		const { amount, description } = request.body;
 
-	const { statement } = customer;
+		const { statement } = customer;
 
-	const balance = getBalance(statement);
+		const balance = getBalance(statement);
 
-	if (balance < amount) {
-		return response.status(400).json({ message: 'Insufficient funds' });
-	}
+		if (balance < amount) {
+			return response.status(400).json({ message: 'Insufficient funds' });
+		}
 
-	customer.statement.push({
-		description,
-		amount,
-		type: 'debit', // deposit
-		created_at: new Date(),
-	});
+		customer.statement.push({
+			description,
+			amount,
+			type: 'debit', // deposit
+			created_at: new Date(),
+		});
 
-	return response.status(201).send();
-});
+		return response.status(201).send();
+	},
+);
+
+app.get(
+	'/statement/date',
+	verifyAccountIfExistsWithCPF,
+	(request, response): Response => {
+		const { date } = request.query;
+		const { customer } = request;
+
+		const dateFormatted = new Date(`${date} 00:00`);
+
+		const statement = customer.statement.filter(
+			(statement) =>
+				statement.created_at.toDateString() === dateFormatted.toDateString(),
+		);
+
+		return response.json(statement);
+	},
+);
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));
